@@ -1,4 +1,5 @@
 import common.BaseThread;
+import java.util.Random;
 
 /**
  * Class Philosopher.
@@ -12,6 +13,11 @@ public class Philosopher extends BaseThread
 	 * Max time an action can take (in milliseconds)
 	 */
 	public static final long TIME_TO_WASTE = 1000;
+	
+	/**
+	 * Random variable to be used for the run method.
+	 */
+	Random random = new Random();
 
 	/**
 	 * The act of eating.
@@ -106,11 +112,10 @@ public class Philosopher extends BaseThread
 			think();
 
 			/*
-			 * TODO:
-			 * A decision is made at random whether this particular
-			 * philosopher is about to say something terribly useful.
+			 * When the above random variable will be true a philosopher will talk
 			 */
-			if(true == false)
+			
+			if(random.nextBoolean())
 			{
 				// Some monitor ops down here...
 				talk();
