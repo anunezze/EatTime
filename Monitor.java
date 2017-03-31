@@ -4,7 +4,7 @@
  *
  * @author Serguei A. Mokhov, mokhov@cs.concordia.ca
  */
-public enum Status{THINKING,EATING,HUNGRY,TALKING}
+
 public class Monitor
 {
 	/*
@@ -19,8 +19,9 @@ public class Monitor
 	 */
 	public Monitor(int piNumberOfPhilosophers)
 	{
-		philosophers = new Status[piNumberOfPhilosophers];
 		// TODO: set appropriate number of chopsticks based on the # of philosophers
+		
+		philosophers = new Status[piNumberOfPhilosophers];
 		for(int i = 0; i < piNumberOfPhilosophers; i++)
 			philosophers[i] = Status.THINKING;
 			
