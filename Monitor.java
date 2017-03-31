@@ -69,9 +69,10 @@ public class Monitor
 	 * Only one philopher at a time is allowed to philosophy
 	 * (while she is not eating).
 	 */
-	public synchronized void requestTalk()
+	public synchronized void requestTalk(int piTID)
 	{
 		// ...
+		testparole(piTID);
 	}
 
 	/**
@@ -90,9 +91,9 @@ public class Monitor
 		if(philosophers[(i-1) % philosophers.length] != Status.EATING && philosophers[i] == Status.HUNGRY && 
 				philosophers[(i+1 % philosophers.length)] != Status.EATING)
 		{
-			philosophers[i] = Status.EATING;
-			this.notifyAll();	
+			philosophers[i] = Status.EATING;	
 		}
+		this.notifyAll();
 	}
 	public synchronized void testparole(int i){
 		for(int j=0;j<philosophers.length;j++){
@@ -106,12 +107,6 @@ public class Monitor
 			philosophers[i] = Status.TALKING;
 		}
 		
-		if(philosophers[(i-1) % philosophers.length  ] != Status.EATING && philosophers[i] == Status.HUNGRY && 
-				philosophers[(i+1 % philosophers.length)] != Status.EATING)
-		{
-			philosophers[i] = Status.EATING;
-			this.notifyAll();	
-		}
 	}
 }
 
