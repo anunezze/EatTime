@@ -48,9 +48,9 @@ public class Monitor
 	 */
 	public synchronized void putDown(final int piTID)
 	{
-		// ...
-	}
 
+		
+	}
 	/**
 	 * Only one philopher at a time is allowed to philosophy
 	 * (while she is not eating).
