@@ -82,7 +82,8 @@ public class Monitor
 	}
 	
 	public synchronized void test(int i){
-		if(philosophers[i-1] != Status.EATING && philosophers[i] == Status.HUNGRY && philosophers[i+1] != Status.EATING)
+		if(philosophers[(i-1) % philosophers.length] != Status.EATING && philosophers[i] == Status.HUNGRY && 
+				philosophers[(i+1 % philosophers.length)] != Status.EATING)
 		{
 			philosophers[i] = Status.EATING;
 			this.notifyAll();	
