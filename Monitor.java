@@ -84,8 +84,30 @@ public class Monitor
 		// ...
 	}
 	
+	/**
+	 * Testing if any of the neighbours8 of a philosopher is negbours of the 
+	 */
 	public synchronized void test(int i){
 		if(philosophers[(i-1) % philosophers.length] != Status.EATING && philosophers[i] == Status.HUNGRY && 
+				philosophers[(i+1 % philosophers.length)] != Status.EATING)
+		{
+			philosophers[i] = Status.EATING;
+			this.notifyAll();	
+		}
+	}
+	public synchronized void testparole(int i){
+		for(int j=0;j<philosophers.length;j++){
+			if(philosophers[j]==Status.TALKING){
+				try{
+					this.wait();
+				}catch(Exception e){
+					System.out.println(e);
+				}
+			}
+			philosophers[i] = Status.TALKING;
+		}
+		
+		if(philosophers[(i-1) % philosophers.length  ] != Status.EATING && philosophers[i] == Status.HUNGRY && 
 				philosophers[(i+1 % philosophers.length)] != Status.EATING)
 		{
 			philosophers[i] = Status.EATING;
