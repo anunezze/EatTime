@@ -40,6 +40,18 @@ public class Monitor
 	public synchronized void pickUp(final int piTID)
 	{
 		// ...
+		philosophers[piTID]=Status.HUNGRY;
+		
+		test(piTID);
+		
+		if (philosophers[piTID] != Status.EATING);
+		try{
+			wait();
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		
+		
 	}
 
 	/**
@@ -67,6 +79,14 @@ public class Monitor
 	public synchronized void endTalk()
 	{
 		// ...
+	}
+	
+	public synchronized void test(int i){
+		if(philosophers[i-1] != Status.EATING && philosophers[i] == Status.HUNGRY && philosophers[i+1] != Status.EATING)
+		{
+			philosophers[i] = Status.EATING;
+			this.notifyAll();	
+		}
 	}
 }
 
