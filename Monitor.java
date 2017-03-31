@@ -60,7 +60,9 @@ public class Monitor
 	 */
 	public synchronized void putDown(final int piTID)
 	{
-
+		this.philosophers[piTID] = Status.THINKING;
+		test((piTID + philosophers.length-1)%philosophers.length);
+		test((piTID+1)%philosophers.length);
 		
 	}
 	/**
