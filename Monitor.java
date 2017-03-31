@@ -12,7 +12,8 @@ public class Monitor
 	 * Data members
 	 * ------------
 	 */
-	Status[] philosophers;
+	private Status[] philosophers;
+	private boolean silence;
 	
 	/**
 	 * Constructor
@@ -71,7 +72,7 @@ public class Monitor
 	 */
 	public synchronized void requestTalk()
 	{
-		// ...
+		
 	}
 
 	/**
