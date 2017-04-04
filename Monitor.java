@@ -13,6 +13,7 @@ public class Monitor
 	 * ------------
 	 */
 	Status[] philosophers;
+	int talktrack=0;
 	
 	/**
 	 * Constructor
@@ -82,6 +83,8 @@ public class Monitor
 	public synchronized void endTalk()
 	{
 		// ...
+		talktrack=0;
+		
 	}
 	
 	/**
@@ -95,8 +98,17 @@ public class Monitor
 		}
 		this.notifyAll();
 	}
+	
 	public synchronized void testparole(int i){
-		for(int j=0;j<philosophers.length;j++){
+		while(talktrack!=0){
+			try{
+				wait();
+			}catch(Exception e){
+				System.out.println(e);
+			}
+			talktrack=i;
+		}
+		/*for(int j=0;j<philosophers.length;j++){
 			if(philosophers[j]==Status.TALKING){
 				try{
 					this.wait();
@@ -105,7 +117,7 @@ public class Monitor
 				}
 			}
 			philosophers[i] = Status.TALKING;
-		}
+		}*/
 		
 	}
 }
