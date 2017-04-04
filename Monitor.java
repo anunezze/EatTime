@@ -25,7 +25,6 @@ public class Monitor
 		philosophers = new Status[piNumberOfPhilosophers];
 		for(int i = 0; i < piNumberOfPhilosophers; i++)
 			philosophers[i] = Status.THINKING;
-			
 	}
 
 	/*
@@ -51,8 +50,6 @@ public class Monitor
 		}catch(Exception e){
 			System.out.println(e);
 		}
-		
-		
 	}
 
 	/**
@@ -64,7 +61,6 @@ public class Monitor
 		this.philosophers[piTID] = Status.THINKING;
 		test((piTID + philosophers.length-1)%philosophers.length);
 		test((piTID+1)%philosophers.length);
-		
 	}
 	/**
 	 * Only one philopher at a time is allowed to philosophy
@@ -72,6 +68,7 @@ public class Monitor
 	 */
 	public synchronized void requestTalk()
 	{
+		
 		
 	}
 
@@ -81,7 +78,7 @@ public class Monitor
 	 */
 	public synchronized void endTalk()
 	{
-		// ...
+		
 	}
 	
 	/**
