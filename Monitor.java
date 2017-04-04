@@ -12,8 +12,12 @@ public class Monitor
 	 * Data members
 	 * ------------
 	 */
+
 	private Status[] philosophers;
 	private boolean silence;
+
+	int talktrack=0;
+
 	
 	/**
 	 * Constructor
@@ -66,10 +70,11 @@ public class Monitor
 	 * Only one philopher at a time is allowed to philosophy
 	 * (while she is not eating).
 	 */
-	public synchronized void requestTalk()
+	public synchronized void requestTalk(int piTID)
 	{
-		
-		
+
+		testparole(piTID);
+
 	}
 
 	/**
@@ -78,6 +83,9 @@ public class Monitor
 	 */
 	public synchronized void endTalk()
 	{
+
+		talktrack=0;
+
 		
 	}
 	
@@ -88,12 +96,21 @@ public class Monitor
 		if(philosophers[(i-1) % philosophers.length] != Status.EATING && philosophers[i] == Status.HUNGRY && 
 				philosophers[(i+1 % philosophers.length)] != Status.EATING)
 		{
-			philosophers[i] = Status.EATING;
-			this.notifyAll();	
+			philosophers[i] = Status.EATING;	
 		}
+		this.notifyAll();
 	}
+	
 	public synchronized void testparole(int i){
-		for(int j=0;j<philosophers.length;j++){
+		while(talktrack!=0){
+			try{
+				wait();
+			}catch(Exception e){
+				System.out.println(e);
+			}
+			talktrack=i;
+		}
+		/*for(int j=0;j<philosophers.length;j++){
 			if(philosophers[j]==Status.TALKING){
 				try{
 					this.wait();
@@ -102,14 +119,8 @@ public class Monitor
 				}
 			}
 			philosophers[i] = Status.TALKING;
-		}
+		}*/
 		
-		if(philosophers[(i-1) % philosophers.length  ] != Status.EATING && philosophers[i] == Status.HUNGRY && 
-				philosophers[(i+1 % philosophers.length)] != Status.EATING)
-		{
-			philosophers[i] = Status.EATING;
-			this.notifyAll();	
-		}
 	}
 }
 
