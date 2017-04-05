@@ -16,6 +16,7 @@ public class DiningPhilosophers
 	 * This default may be overridden from the command line
 	 */
 	public static final int DEFAULT_NUMBER_OF_PHILOSOPHERS = 4;
+	public static String input;
 
 	/**
 	 * Dining "iterations" per philosopher thread
@@ -27,6 +28,7 @@ public class DiningPhilosophers
 	 * Our shared monitor for the philosphers to consult
 	 */
 	public static Monitor soMonitor = null;
+	
 
 	/*
 	 * -------
@@ -38,7 +40,7 @@ public class DiningPhilosophers
 	 * Main system starts up right here
 	 */
 	public static void main(String[] argv)
-	{
+	{		
 		try
 		{
 			/*
@@ -46,7 +48,14 @@ public class DiningPhilosophers
 			 * Should be settable from the command line
 			 * or the default if no arguments supplied.
 			 */
-			int iPhilosophers = DEFAULT_NUMBER_OF_PHILOSOPHERS;
+			//String input = argv[0];
+			int iPhilosophers;
+			if(input.equals(""))
+				iPhilosophers = DEFAULT_NUMBER_OF_PHILOSOPHERS;
+			else 
+				iPhilosophers = Integer.parseInt(input);
+			
+			
 
 			// Make the monitor aware of how many philosophers there are
 			soMonitor = new Monitor(iPhilosophers);
@@ -79,6 +88,11 @@ public class DiningPhilosophers
 			System.err.println("main():");
 			reportException(e);
 			System.exit(1);
+		}
+		catch(NumberFormatException e){
+			System.out.println("% java DiningPhilosopers " + input+"\n\"" + input +"\" is not a positive decimal integer" +
+					"\n\nUsage: java DiningPhilosophers[NUMBER_OF_PHILOSOPHERS]\n%");
+						System.exit(0);
 		}
 	} // main()
 
