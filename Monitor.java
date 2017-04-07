@@ -109,7 +109,7 @@ public class Monitor
 		{
 			philosophers[i] = Status.EATING;	
 		}
-		this.notifyAll();
+		this.notify();
 	}
 	
 	public synchronized void testparole(int i){
