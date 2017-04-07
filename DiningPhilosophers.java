@@ -50,7 +50,7 @@ public class DiningPhilosophers
 			 */
 			//String input = argv[0];
 			int iPhilosophers;
-			if(input.equals(""))
+			if(input == null)
 				iPhilosophers = DEFAULT_NUMBER_OF_PHILOSOPHERS;
 			else 
 				iPhilosophers = Integer.parseInt(input);
