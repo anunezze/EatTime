@@ -67,6 +67,7 @@ public class DiningPhilosophers
 			// Let 'em sit down
 			for(int j = 0; j < iPhilosophers; j++)
 			{
+				
 				aoPhilosophers[j] = new Philosopher();
 				aoPhilosophers[j].start();
 			}

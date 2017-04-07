@@ -29,6 +29,7 @@ public class Monitor
 		philosophers = new Status[piNumberOfPhilosophers];
 		for(int i = 0; i < piNumberOfPhilosophers; i++)
 			philosophers[i] = Status.THINKING;
+			
 	}
 
 	/*
@@ -45,6 +46,7 @@ public class Monitor
 	{
 		// ...
 		philosophers[piTID]=Status.HUNGRY;
+		
 		
 		test(piTID);
 		
