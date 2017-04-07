@@ -7,11 +7,7 @@
 
 public class Monitor
 {
-	/*
-	 * ------------
-	 * Data members
-	 * ------------
-	 */
+	//this method does the correct modulus
 	public static synchronized int mod(int a, int b)
     {
         if (a < 0)
@@ -19,6 +15,12 @@ public class Monitor
         else
             return a % b;
     }
+	/*
+	 * ------------
+	 * Data members
+	 * ------------
+	 */
+	
 
 	private Status[] philosophers;
 	private boolean silence;
@@ -77,7 +79,7 @@ public class Monitor
 		test(mod((piTID+1),philosophers.length));
 	}
 	/**
-	 * Only one philopher at a time is allowed to philosophy
+	 * Only one philosopher at a time is allowed to philosophy
 	 * (while she is not eating).
 	 */
 	public synchronized void requestTalk(int piTID)
