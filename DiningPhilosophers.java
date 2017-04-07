@@ -20,7 +20,7 @@ public class DiningPhilosophers
 
 	/**
 	 * Dining "iterations" per philosopher thread
-	 * while they are socializing there
+	 * while they are  socializing there
 	 */
 	public static final int DINING_STEPS = 10;
 

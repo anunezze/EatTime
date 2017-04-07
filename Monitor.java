@@ -12,6 +12,13 @@ public class Monitor
 	 * Data members
 	 * ------------
 	 */
+	public static synchronized int mod(int a, int b)
+    {
+        if (a < 0)
+            return b + (a % b);
+        else
+            return a % b;
+    }
 
 	private Status[] philosophers;
 	private boolean silence;
@@ -44,6 +51,7 @@ public class Monitor
 	public synchronized void pickUp(final int piTID)
 	{
 		// ...
+		//System.out.println("ID:"+piTID);
 		philosophers[piTID]=Status.HUNGRY;
 		
 		test(piTID);
@@ -63,8 +71,8 @@ public class Monitor
 	public synchronized void putDown(final int piTID)
 	{
 		this.philosophers[piTID] = Status.THINKING;
-		test((piTID + philosophers.length-1)%philosophers.length);
-		test((piTID+1)%philosophers.length);
+		test(mod((piTID + philosophers.length-1),philosophers.length));
+		test(mod((piTID+1),philosophers.length));
 	}
 	/**
 	 * Only one philopher at a time is allowed to philosophy
@@ -93,8 +101,9 @@ public class Monitor
 	 * Testing if any of the neighbours8 of a philosopher is negbours of the 
 	 */
 	public synchronized void test(int i){
-		if(philosophers[(i-1) % philosophers.length] != Status.EATING && philosophers[i] == Status.HUNGRY && 
-				philosophers[(i+1 % philosophers.length)] != Status.EATING)
+		//System.out.println("test:"+i+" result:"+mod((i-1), philosophers.length));
+		if(philosophers[mod((i-1),philosophers.length)] != Status.EATING && philosophers[i] == Status.HUNGRY && 
+				philosophers[mod((i+1),philosophers.length)] != Status.EATING)
 		{
 			philosophers[i] = Status.EATING;	
 		}
@@ -110,6 +119,8 @@ public class Monitor
 			}
 			talktrack=i;
 		}
+		
+		   
 		/*for(int j=0;j<philosophers.length;j++){
 			if(philosophers[j]==Status.TALKING){
 				try{
