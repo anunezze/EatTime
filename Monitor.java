@@ -100,18 +100,6 @@ public class Monitor
 		}
 		talktrack=i;
 		
-		   
-		/*for(int j=0;j<philosophers.length;j++){
-			if(philosophers[j]==Status.TALKING){
-				try{
-					this.wait();
-				}catch(Exception e){
-					System.out.println(e);
-				}
-			}
-			philosophers[i] = Status.TALKING;
-		}*/
-		
 	}
 	/**
 	 * When one philosopher is done talking stuff, others
