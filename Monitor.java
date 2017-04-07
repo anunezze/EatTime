@@ -23,7 +23,7 @@ public class Monitor
 	
 
 	private Status[] philosophers;
-	private boolean silence;
+	//private boolean silence;
 
 	int talktrack=0;
 
@@ -88,20 +88,6 @@ public class Monitor
 		testparole(piTID);
 
 	}
-
-	/**
-	 * When one philosopher is done talking stuff, others
-	 * can feel free to start talking.
-	 */
-	public synchronized void endTalk()
-	{
-
-		talktrack=0;
-
-		
-	}
-	
-	
 	
 	public synchronized void testparole(int i){
 		while(talktrack!=0){
@@ -110,8 +96,9 @@ public class Monitor
 			}catch(Exception e){
 				System.out.println(e);
 			}
-			talktrack=i;
+			
 		}
+		talktrack=i;
 		
 		   
 		/*for(int j=0;j<philosophers.length;j++){
@@ -126,6 +113,19 @@ public class Monitor
 		}*/
 		
 	}
+	/**
+	 * When one philosopher is done talking stuff, others
+	 * can feel free to start talking.
+	 */
+	public synchronized void endTalk()
+	{
+
+		talktrack=0;
+	
+	}
+	
+	
+	
 }
 
 // EOF

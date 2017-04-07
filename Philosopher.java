@@ -118,8 +118,10 @@ public class Philosopher extends BaseThread
 			if(random.nextBoolean())
 			{
 				// Some monitor ops down here...
+				DiningPhilosophers.soMonitor.requestTalk(getTID()-1);
 				talk();
 				// ...
+				DiningPhilosophers.soMonitor.endTalk();
 			}
 
 			yield();
