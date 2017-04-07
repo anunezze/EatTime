@@ -58,16 +58,9 @@ public class Monitor
 		int id= piTID;
 		philosophers[id]=Status.HUNGRY;
 		
-<<<<<<< HEAD
-		
-		test(piTID);
-		
-		if (philosophers[piTID] != Status.EATING);
-=======
 		while(philosophers[mod((id-1),philosophers.length)] == Status.EATING ||  
 				philosophers[mod((id+1),philosophers.length)] == Status.EATING)
 		{
->>>>>>> 13677483c4ebf01db581981115ad7fc76d9e450e
 		try{
 			wait();
 		}catch(Exception e){
@@ -96,21 +89,14 @@ public class Monitor
 		testparole(piTID);
 
 	}
-
 	/**
 	 * When one philosopher is done talking stuff, others
 	 * can feel free to start talking.
 	 */
 	public synchronized void endTalk()
 	{
-
-		talktrack=0;
-
-		
+		talktrack=0;		
 	}
-	
-	
-	
 	public synchronized void testparole(int i){
 		while(talktrack!=0){
 			try{
@@ -118,21 +104,9 @@ public class Monitor
 			}catch(Exception e){
 				System.out.println(e);
 			}
-			talktrack=i;
+			
 		}
-		
-		   
-		/*for(int j=0;j<philosophers.length;j++){
-			if(philosophers[j]==Status.TALKING){
-				try{
-					this.wait();
-				}catch(Exception e){
-					System.out.println(e);
-				}
-			}
-			philosophers[i] = Status.TALKING;
-		}*/
-		
+		talktrack=i;
 	}
 }
 
