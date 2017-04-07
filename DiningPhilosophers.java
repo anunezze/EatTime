@@ -71,17 +71,7 @@ public class DiningPhilosophers
 			// Space for all the philosophers
 			Philosopher aoPhilosophers[] = new Philosopher[iPhilosophers];
 
-<<<<<<< HEAD
-			// Let 'em sit down
-			for(int j = 0; j < iPhilosophers; j++)
-			{
-				
-				aoPhilosophers[j] = new Philosopher();
-				aoPhilosophers[j].start();
-			}
-=======
-			
->>>>>>> 38bf477b6f6e108d03611eb3f9eb01590d63efd6
+
 
 			System.out.println
 			(
