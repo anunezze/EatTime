@@ -50,20 +50,23 @@ public class Monitor
 	 * Grants request (returns) to eat when both chopsticks/forks are available.
 	 * Else forces the philosopher to wait()
 	 */
-	public synchronized void pickUp(final int piTID)
+	public synchronized void pickUp(final int piTID) 
 	{
 		// ...
 		//System.out.println("ID:"+piTID);
-		philosophers[piTID]=Status.HUNGRY;
+		int id= piTID;
+		philosophers[id]=Status.HUNGRY;
 		
-		test(piTID);
-		
-		if (philosophers[piTID] != Status.EATING);
+		while(philosophers[mod((id-1),philosophers.length)] == Status.EATING ||  
+				philosophers[mod((id+1),philosophers.length)] == Status.EATING)
+		{
 		try{
 			wait();
 		}catch(Exception e){
 			System.out.println(e);
 		}
+		}
+		philosophers[id] = Status.EATING;
 	}
 
 	/**
@@ -73,8 +76,7 @@ public class Monitor
 	public synchronized void putDown(final int piTID)
 	{
 		this.philosophers[piTID] = Status.THINKING;
-		test(mod((piTID + philosophers.length-1),philosophers.length));
-		test(mod((piTID+1),philosophers.length));
+		notifyAll();
 	}
 	/**
 	 * Only one philosopher at a time is allowed to philosophy
@@ -99,18 +101,7 @@ public class Monitor
 		
 	}
 	
-	/**
-	 * Testing if any of the neighbours8 of a philosopher is negbours of the 
-	 */
-	public synchronized void test(int i){
-		//System.out.println("test:"+i+" result:"+mod((i-1), philosophers.length));
-		if(philosophers[mod((i-1),philosophers.length)] != Status.EATING && philosophers[i] == Status.HUNGRY && 
-				philosophers[mod((i+1),philosophers.length)] != Status.EATING)
-		{
-			philosophers[i] = Status.EATING;	
-		}
-		this.notify();
-	}
+	
 	
 	public synchronized void testparole(int i){
 		while(talktrack!=0){
