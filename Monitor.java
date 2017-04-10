@@ -92,6 +92,7 @@ public class Monitor
 	/**
 	 * Method testparole tests if there is a philosopher talking
 	 * @param i
+	 * 			The ID of the thread
 	 */
 	public synchronized void testparole(int i){
 		// loop that makes the philosopher wait if there already is a philosopher talking
