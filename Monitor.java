@@ -23,7 +23,7 @@ public class Monitor
 	
 
 	private Status[] philosophers;
-	private boolean silence;
+	//private boolean silence;
 
 	int talktrack=0;
 
@@ -33,8 +33,7 @@ public class Monitor
 	 */
 	public Monitor(int piNumberOfPhilosophers)
 	{
-		// TODO: set appropriate number of chopsticks based on the # of philosophers
-		
+		// Initiate the philosophers status
 		philosophers = new Status[piNumberOfPhilosophers];
 		for(int i = 0; i < piNumberOfPhilosophers; i++)
 			philosophers[i] = Status.THINKING;
@@ -57,7 +56,7 @@ public class Monitor
 		//System.out.println("ID:"+piTID);
 		int id= piTID;
 		philosophers[id]=Status.HUNGRY;
-		
+		// While loop that makes the philosopher wait while the philosophers at his sides are eating. 
 		while(philosophers[mod((id-1),philosophers.length)] == Status.EATING ||  
 				philosophers[mod((id+1),philosophers.length)] == Status.EATING)
 		{
@@ -77,7 +76,7 @@ public class Monitor
 	public synchronized void putDown(final int piTID)
 	{
 		this.philosophers[piTID] = Status.THINKING;
-		notifyAll();
+		notifyAll(); // Notify all philosophers that he has done eating. 
 	}
 	/**
 	 * Only one philosopher at a time is allowed to philosophy
@@ -89,15 +88,13 @@ public class Monitor
 		testparole(piTID);
 
 	}
+
 	/**
-	 * When one philosopher is done talking stuff, others
-	 * can feel free to start talking.
+	 * Method testparole tests if there is a philosopher talking
+	 * @param i
 	 */
-	public synchronized void endTalk()
-	{
-		talktrack=0;		
-	}
 	public synchronized void testparole(int i){
+		// loop that makes the philosopher wait if there already is a philosopher talking
 		while(talktrack!=0){
 			try{
 				wait();
@@ -107,6 +104,18 @@ public class Monitor
 			
 		}
 		talktrack=i;
+		
+	}
+
+	/**
+	 * When one philosopher is done talking stuff, others
+	 * can feel free to start talking.
+	 */
+	public synchronized void endTalk()
+	{
+		talktrack=0;
+		this.notifyAll();
+	
 	}
 }
 

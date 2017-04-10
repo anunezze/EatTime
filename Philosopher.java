@@ -114,12 +114,11 @@ public class Philosopher extends BaseThread
 			/*
 			 * When the above random variable will be true a philosopher will talk
 			 */
-			
 			if(random.nextBoolean())
 			{
-				// Some monitor ops down here...
+				DiningPhilosophers.soMonitor.requestTalk(getTID()-1);
 				talk();
-				// ...
+				DiningPhilosophers.soMonitor.endTalk();
 			}
 
 			yield();

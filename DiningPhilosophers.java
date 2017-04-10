@@ -15,7 +15,7 @@ public class DiningPhilosophers
 	/**
 	 * This default may be overridden from the command line
 	 */
-	public static final int DEFAULT_NUMBER_OF_PHILOSOPHERS = 6;
+	public static final int DEFAULT_NUMBER_OF_PHILOSOPHERS = 3;
 	public static String input;
 
 	/**
@@ -44,25 +44,15 @@ public class DiningPhilosophers
 		try
 		{
 			String input="";
-			/*
-			 * TODO:
-			 * Should be settable from the command line
-			 * or the default if no arguments supplied.
-			 */
-
-			//String input = argv[0];
 			int iPhilosophers;
-			if(input == null)
-				iPhilosophers = DEFAULT_NUMBER_OF_PHILOSOPHERS;
-			else 
 
-			if(argv.length >0 && argv[0]!= null){
+			if(argv.length >0 && argv[0]!= null){ // if there is a parameter passed to the program set it as the # of philosophers
 				input = argv[0];
 
 				iPhilosophers = Integer.parseInt(input);
 			}
 				
-			else
+			else // else set default # of philosophers
 				iPhilosophers = DEFAULT_NUMBER_OF_PHILOSOPHERS;		
 
 			// Make the monitor aware of how many philosophers there are
