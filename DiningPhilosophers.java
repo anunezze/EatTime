@@ -50,6 +50,8 @@ public class DiningPhilosophers
 				input = argv[0];
 
 				iPhilosophers = Integer.parseInt(input);
+				if(iPhilosophers <=0)
+					throw new NumberFormatException();
 			}
 				
 			else // else set default # of philosophers
