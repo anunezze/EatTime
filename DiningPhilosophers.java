@@ -92,7 +92,7 @@ public class DiningPhilosophers
 			System.exit(1);
 		}
 		catch(NumberFormatException e){
-			System.out.println("% java DiningPhilosopers " + input+"\n\"" + input +"\" is not a positive decimal integer" +
+			System.out.println("% java DiningPhilosopers " + argv[0]+"\n\"" + argv[0] +"\" is not a positive decimal integer" +
 					"\n\nUsage: java DiningPhilosophers[NUMBER_OF_PHILOSOPHERS]\n%");
 						System.exit(0);
 		}
