@@ -114,7 +114,7 @@ public class Monitor
 	public synchronized void endTalk()
 	{
 		talktrack=0;
-		this.notifyAll();
+		this.notifyAll(); // notify all philosophers he has done talking.
 	
 	}
 }
